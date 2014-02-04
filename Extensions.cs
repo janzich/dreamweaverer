@@ -106,6 +106,31 @@ namespace DreamWeaverer
             return value;
         }
 
+        public static bool OneOf<T>(this T element, IEnumerable<T> list)
+        {
+            return list == null ? false : list.Contains(element);
+        }
+
+        public static bool OneOf<T>(this T element, IEqualityComparer<T> comparer, params T[] list)
+        {
+            return list == null ? false : list.Contains(element, comparer);
+        }
+
+        public static bool OneOf<T>(this T element, params T[] list)
+        {
+            return list == null ? false : list.Contains(element);
+        }
+
+        public static bool OneOfInvariantIgnoreCase(this string element, params string[] list)
+        {
+            return list == null ? false : list.Contains(element, StringComparer.InvariantCultureIgnoreCase);
+        }
+
+        public static bool OneOfInvariantIgnoreCase(this string element, IEnumerable<string> list)
+        {
+            return list == null ? false : list.Contains(element, StringComparer.InvariantCultureIgnoreCase);
+        }
+
         public static string ConcatenateString<T>(this IEnumerable<string> values, T delimiter, T finalDelimiter)
         {
             StringBuilder sb = new StringBuilder();
