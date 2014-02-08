@@ -83,6 +83,16 @@ namespace DreamWeaverer
                 return Name != null;
             }
         }
+
+        public static string CreateMark(string regioName, IEnumerable<KeyValuePair<string, string>> options = null)
+        {
+
+            string optionsStr = options == null || !options.Any() ? null :
+                options.Select(o => string.Format("{0}=\"{1}\"", o.Key, o.Value)).ConcatenateString(" ");
+
+            return "<!-- " + regioName + (optionsStr != null ? " " + optionsStr : "") + " -->";
+        
+        }
     
     }
 }

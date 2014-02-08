@@ -5,12 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using HtmlAgilityPack;
 using MoreLinq;
 
 namespace DreamWeaverer
 {
     public static class Utils
     {
+
+        public static void RemoveTagsByName(HtmlNode htmlNode, string tagName)
+        {
+            foreach (HtmlNode node in htmlNode.Descendants(tagName).ToList())
+            {
+                node.Remove();
+            }
+        }
 
         public static string RemoveHtmlCommentMarks(string comment)
         {
