@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 using HtmlAgilityPack;
 using MoreLinq;
 
-namespace DreamWeaverer
+namespace DreamweaverReplacer
 {
     public static class Utils
     {
@@ -116,6 +117,36 @@ namespace DreamWeaverer
                 parentDirComponents.RemoveAt(parentDirComponents.Count - 1);
             }
 
+        }
+
+        public static string SafeReadAllText(string path, Encoding encoding = null)
+        {
+            try
+            {
+                return encoding == null ?
+                    File.ReadAllText(path) :
+                    File.ReadAllText(path, encoding);
+            }
+            catch (FileNotFoundException)
+            {
+                return null;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                return null;
+            }
+        }
+
+        public static string GetResourceTextFile(string fileName)
+        {
+            string fillResourceName = string.Format("DreamweaverReplacer.{0}", fileName);
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(fillResourceName))
+            {
+                using (StreamReader streamReader = new StreamReader(stream))
+                {
+                    return streamReader.ReadToEnd();
+                }
+            }
         }
 
     }

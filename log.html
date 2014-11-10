@@ -1,0 +1,95 @@
+﻿<!DOCTYPE HTML PUBLIC " -//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+    <title>Log</title>
+
+    <style type="text/css">
+
+        body {
+            font-family: Microsoft Sans Serif;
+            font-size: 8.25pt;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        ul.log {
+            display: block;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        ul.log li {
+            display: block;
+            list-style-type: none;
+            margin: 0px;
+            padding: 5px 10px 5px 30px;
+            border-bottom: 1px solid #eee;
+            background-position: 7px 4px;
+            background-repeat: no-repeat;
+        }
+
+        ul.log li.success {
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABwklEQVQ4jWNgoAXQPpploHOyoEH3dMEy3ZN5S3VO59Wrn8jUI6jR+EyaiM6JvK16Zwr/Y8O6p/I3yuxIFsKpWfdU7iNcmmFY+1T+fd1LFYIYBmgdyzlISDMM65zI24Wi2ehEsTEhTVW3lvy3OFcB52scy9FFBNqh7OX4NPff3fT/zYeP//c/u/Rf/0wRxCtHshcgnH8k5yZMseW5ChSbYJpfvHv3P+34RERYHMm+gnDB4eyHemcK/1udq/x/5Pm1/4eeXflvca4cRXPqsf7/uify4QZoHc6+i3DBgYxzemcK/zuervl/6fm9/28+fPx/480jnJr1zhT+19qXeRJugPqOlBa9M4X/9U4X/rffX/b/4vO7/998+Pj/+bu3/1OO9v3XPZmPES7qW1Kq4QZILwwU1jyQ+QfZkLNPb/1POdqPVbPm/sxfAvMDBFCiUnVDYrXu8bz/MEN092Vh1ax7LO+/2vqkYsyk+J+BUXVD/HTtQ9m4U+HB7P9q6xMmMfxnYMSanBkYGBhU18QEq29MvKO1N+O/9sGs/zoHs/9r7cn4r7Ix6ZbK6jh/nBrRXaO0IlxNZU2sr+rqOB+lpVGquGwFAOEPojhuMyNnAAAAAElFTkSuQmCC);
+        }
+
+        ul.log li.error {
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB6klEQVQ4jbWSz2sTURDHX/8Df928SEGNNK2BJC95myVK243dHyrirSL+ER6LJofSVAoWqqQgVryoN8WDl7YeSlXoQSl0U7ptQnazWbNLF7K5ivD1IHl2myw9+WAOb2a+nzczbwj5H6chpROOIpQchb11lNwbRxGK9lRm7EShcT15rqUKn9qaiEHWmhI+VtnImWixLDSjxD1rKkLDUsXTfYDmDbbRS3If3OkTHvVZcnY1JLZUMcmT79/CoefBe/n8n3ilgkPXRXta4766wkY5oCal3vUCtiKgOl+CH3ThvarAXanAD7rQ5x6hpeQ4oCbR1xxwIFHjaLmmzLC7MAs/6MIPuqg+KcGSWailukR1DtiXqNU38cpT+J0AfieA82yhbyYHBVrngN2J1I/QwF4swe8E0MtF6OUi/E4Ad3kxBKhOpLY44Hs+MdsLOPc0eLYNfe4xTJnBlBn0chGebcOZVjlgKz82wwHvY+fP7k2mfrc1EY6aw7aWD/Vsygzb2jX8VP/e9ybTvz4kLpwKfeVmNj5jHhvUIGvIDJtC/GHfIoGQoQ12Zdko0EixUaD4ko0vgZChgetMCCFrmdjdb+JobWc8CUOiMCSKnfEkvrKR/bXM5duRwuPVrF8dvvQ5Hbu5TmPaamL4YtSrfwCGo6GDSVFEFAAAAABJRU5ErkJggg==);
+        }
+
+        ul.log li div.file {
+        }
+
+        ul.log li div.info {
+            color: #888;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+
+        function addLogMessage(type, file, info)
+        {
+
+            var wasScrolled =
+                document.body.offsetHeight -
+                document.documentElement.scrollTop -
+                document.documentElement.offsetHeight <= 0;
+
+            var fileElement = document.createElement("div");
+            fileElement.className = "file";
+            fileElement.appendChild(document.createTextNode(file));
+
+            var infoElement = document.createElement("div");
+            infoElement.className = "info";
+            infoElement.appendChild(document.createTextNode(info));
+
+            var messageElement = document.createElement("li");
+            messageElement.className = type || "success";
+            messageElement.appendChild(fileElement);
+            messageElement.appendChild(infoElement);
+             
+            var logElement = document.getElementById("log");
+            logElement.appendChild(messageElement);
+
+            var windowHeight = document.documentElement.offsetHeight;
+            var scrollTop = document.documentElement.scrollTop;
+            var docHeight = document.body.offsetHeight;
+
+            if (wasScrolled)
+            {
+                document.documentElement.scrollTop =
+                    document.body.offsetHeight -
+                    document.documentElement.offsetHeight;
+            }
+
+        }
+
+    </script>
+
+</head>
+<body>
+    <ul class="log" id="log">
+    </ul>
+</body>
+</html>

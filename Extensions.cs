@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 using HtmlAgilityPack;
 
-namespace DreamWeaverer
+namespace DreamweaverReplacer
 {
     public static class Extensions
     {
