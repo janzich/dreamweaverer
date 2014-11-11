@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.btnPickDir = new System.Windows.Forms.Button();
-            this.textBoxDir = new System.Windows.Forms.TextBox();
+            this.txtBoxDir = new System.Windows.Forms.TextBox();
             this.imgListLog = new System.Windows.Forms.ImageList(this.components);
             this.webBrowserLog = new System.Windows.Forms.WebBrowser();
             this.pnlWebBrowserContainer = new System.Windows.Forms.Panel();
@@ -54,15 +54,15 @@
             this.btnPickDir.UseVisualStyleBackColor = true;
             this.btnPickDir.Click += new System.EventHandler(this.btnPickDir_Click);
             // 
-            // textBoxDir
+            // txtBoxDir
             // 
-            this.textBoxDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtBoxDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDir.Location = new System.Drawing.Point(12, 25);
-            this.textBoxDir.Name = "textBoxDir";
-            this.textBoxDir.Size = new System.Drawing.Size(520, 20);
-            this.textBoxDir.TabIndex = 1;
-            this.textBoxDir.Text = "C:\\Users\\Jan Zich\\Documents\\Dreamweaverer\\Test";
+            this.txtBoxDir.Location = new System.Drawing.Point(12, 25);
+            this.txtBoxDir.Name = "txtBoxDir";
+            this.txtBoxDir.Size = new System.Drawing.Size(520, 20);
+            this.txtBoxDir.TabIndex = 1;
+            this.txtBoxDir.Text = "C:\\Users\\Jan Zich\\Documents\\Dreamweaverer\\Test";
             // 
             // imgListLog
             // 
@@ -140,12 +140,14 @@
             this.Controls.Add(this.lblProgressCount);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.lblDirectory);
-            this.Controls.Add(this.textBoxDir);
+            this.Controls.Add(this.txtBoxDir);
             this.Controls.Add(this.btnPickDir);
             this.Controls.Add(this.btnRun);
             this.Controls.Add(this.pnlWebBrowserContainer);
             this.Name = "Main";
             this.Text = "Dreamweaver replacer";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
+            this.Load += new System.EventHandler(this.Main_Load);
             this.pnlWebBrowserContainer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -155,7 +157,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnPickDir;
-        private System.Windows.Forms.TextBox textBoxDir;
+        private System.Windows.Forms.TextBox txtBoxDir;
         private System.Windows.Forms.ImageList imgListLog;
         private System.Windows.Forms.WebBrowser webBrowserLog;
         private System.Windows.Forms.Panel pnlWebBrowserContainer;

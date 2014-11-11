@@ -9,20 +9,37 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace DreamweaverReplacer
 {
     public partial class Main : Form
     {
 
+        private const string REG_MAIN_KEY = @"HKEY_CURRENT_USER\Software\Dreamweaver replacer";
+        private const string REG_DIR_VAL_NAME = "Directory";
+
         public Main()
         {
             InitializeComponent();
         }
 
+        private void Main_Load(object sender, EventArgs e)
+        {
+            txtBoxDir.Text = Registry.GetValue(REG_MAIN_KEY, REG_DIR_VAL_NAME, null) as string;
+        }
+
+        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Registry.SetValue(REG_MAIN_KEY, REG_DIR_VAL_NAME, txtBoxDir.Text);
+        }
+
         private void btnPickDir_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog.ShowDialog();
+            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                txtBoxDir.Text = folderBrowserDialog.SelectedPath;
+            }
         }
 
         private void btnRun_Click(object sender, EventArgs e)
@@ -35,7 +52,7 @@ namespace DreamweaverReplacer
             System.Threading.ThreadPool.QueueUserWorkItem((s) =>
             {
 
-                Replacer.Replace(textBoxDir.Text, (summary) =>
+                Replacer.Replace(txtBoxDir.Text, (summary) =>
                 {
                     Invoke((MethodInvoker)(() =>
                     {
