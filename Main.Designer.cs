@@ -145,6 +145,7 @@
             this.Controls.Add(this.btnRun);
             this.Controls.Add(this.pnlWebBrowserContainer);
             this.Name = "Main";
+            this.ShowIcon = false;
             this.Text = "Dreamweaver replacer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.Load += new System.EventHandler(this.Main_Load);
